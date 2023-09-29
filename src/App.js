@@ -1,9 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
-import './firebase.js';
-import {useEffect} from "react";
+import './firebase';
+import {useEffect, useState} from "react";
 
 function App() {
+  const[user, setUser] = useState(null);
+
+  useEffect(() => {
+
+  }, []);
 
   useEffect(() => {
 
