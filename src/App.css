@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: rgb(220, 220, 220);
+}
+.header{
+    display: flex;
+    margin: 0 auto;
+    background-color: white;
+    border-bottom: 2px solid rgb(230, 230, 230);
+}

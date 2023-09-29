@@ -17,6 +17,20 @@ function App() {
 
   return (
     <div className="App">
+      <div className="header">
+
+        <div className="header_logo">
+          <a><h1>Instagram</h1></a>
+        </div>
+
+        <div className="header_loginForm">
+          <form>
+            <input type="text" placeholder="Login..."/>
+            <input type="password" placeholder="Senha..."/>
+            <input type="submit" placeholder="Logar!"/>
+          </form>
+        </div>
+      </div>
 
     </div>
   );
