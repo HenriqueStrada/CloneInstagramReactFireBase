@@ -22,7 +22,6 @@ function App() {
             <div className="header_logo">
               <a><h1>Instagram</h1></a>
             </div>
-
             <div className="header_loginForm">
               <form>
                 <input type="text" placeholder="Login..."/>

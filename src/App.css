@@ -26,7 +26,7 @@ body{
 }
 .header_loginForm input[type=text],
 .header_loginForm input[type=password]{
-    width: 150px;
+    width: 180px;
     margin-right: 5px;
     height: 20px;
     border: 1px solid #ccc;
@@ -36,8 +36,10 @@ body{
     background-color: #0095f6;
     color: white;
     border: 0;
-    padding: 4px 10px;
+    height: 20px;
+    padding: 0 10px;
     cursor: pointer;
+    border-radius: 10px;
     font-size: 14px;
 }
 
