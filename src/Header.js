@@ -1,6 +1,9 @@
 import {useEffect, useState} from "react";
 import {auth} from './firebase';
 function Header(props){
+
+    const [progress, setProgress] = useState(0);
+    const [file, setFile] = useState(0);
     useEffect(()=>{
         props.setUser();
     }, [])
@@ -18,7 +21,6 @@ function Header(props){
             alert(err.message);
         })
     }
-
     function criarConta(e){
         e.preventDefault();
         let email = document.getElementById("email-cadastro").value;
@@ -36,7 +38,20 @@ function Header(props){
         }).catch((error)=>{
             alert(error.message);
         })
+    }
 
+    function abrirModalUpload(e){
+        e.preventDefault();
+        let modal = document.querySelector(".modalUpload");
+        modal.style.display = "block";
+    }
+    function fecharModalUpload(e){
+        let modal = document.querySelector(".modalUpload");
+        modal.style.display = "none";
+    }
+
+    function uploadPost(e){
+        e.preventDefault();
 
     }
 
@@ -46,6 +61,7 @@ function Header(props){
         modal.style.display = "block";
     }
     function fecharModalCriar(){
+
         let modal = document.querySelector(".modalCriarConta");
         modal.style.display = "none";
     }
@@ -67,6 +83,21 @@ function Header(props){
         </div>
     </div>
 
+    <div className="modalUpload">
+        <div className="formUpload">
+            <div onClick={()=> fecharModalUpload()} className="close-modal-criar">
+                X
+            </div>
+            <h2>Fazer Upload</h2>
+            <form onSubmit={(e)=>uploadPost(e)}>
+                <progress id="progress-upload" value={progress}></progress>
+                <input id="titulo-upload" type="text" placeholder="Nome da sua foto..."/>
+                <input onChange={(e)=>setFile(e.target.files[0])} type="file" name="file"/>
+                <input type="submit" value="Criar Conta!"/>
+            </form>
+        </div>
+    </div>
+
     <div className="center">
         <div className="header_logo">
             <a><h1>Instagram</h1></a>
@@ -75,7 +106,7 @@ function Header(props){
             (props.user)?
                 <div className="header_logadoInfo">
                     <span>Olá <b>{props.user}</b></span>
-                    <a href="#">Postar!</a>
+                    <a onClick={(e)=>abrirModalUpload(e)} href="#">Postar!</a>
                 </div>
                 :
                 <div onSubmit={(e)=>logar(e)} className="header_loginForm">
