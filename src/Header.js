@@ -1,5 +1,7 @@
 import {useEffect, useState} from "react";
-import {auth} from './firebase';
+import firebase from 'firebase/compat/app';
+import {auth, storage, db} from './firebase';
+import {upload} from "@testing-library/user-event/dist/upload";
 function Header(props){
 
     const [progress, setProgress] = useState(0);
@@ -40,6 +42,17 @@ function Header(props){
         })
     }
 
+    function abrirModalCriarConta(e){
+        e.preventDefault();
+        let modal = document.querySelector(".modalCriarConta");
+        modal.style.display = "block";
+    }
+    function fecharModalCriar(){
+
+        let modal = document.querySelector(".modalCriarConta");
+        modal.style.display = "none";
+    }
+
     function abrirModalUpload(e){
         e.preventDefault();
         let modal = document.querySelector(".modalUpload");
@@ -52,18 +65,31 @@ function Header(props){
 
     function uploadPost(e){
         e.preventDefault();
+        let tituloPost = document.getElementById("titulo-upload").value;
+        let progressEl = document.getElementById("progress-upload").value;
 
-    }
+        const uploadTask = storage.ref(`images/${file.name}`).put(file);
 
-    function abrirModalCriarConta(e){
-        e.preventDefault();
-        let modal = document.querySelector(".modalCriarConta");
-        modal.style.display = "block";
-    }
-    function fecharModalCriar(){
+        uploadTask.on("state_changed", function (snapshot){
+            const progress = Math.round(snapshot.bytesTransferred/snapshot.totalBytes) * 100;
+            setProgress(progress);
+        },function (error){
 
-        let modal = document.querySelector(".modalCriarConta");
-        modal.style.display = "none";
+        },function (){
+            storage.ref("images").child(file.name).getDownloadURL()
+                .then(function(url){
+                    db.collection("posts").add({
+                        titulo: tituloPost,
+                        image: url,
+                        userName: props.user,
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                    })
+                    setProgress(0);
+                    setFile(null);
+                    alert("Upload Realizado com sucesso!");
+                    document.getElementById("form-upload").reset();
+                })
+        })
     }
     return(
 <div className="header">
@@ -89,11 +115,11 @@ function Header(props){
                 X
             </div>
             <h2>Fazer Upload</h2>
-            <form onSubmit={(e)=>uploadPost(e)}>
+            <form id="form-upload" onSubmit={(e)=>uploadPost(e)}>
                 <progress id="progress-upload" value={progress}></progress>
                 <input id="titulo-upload" type="text" placeholder="Nome da sua foto..."/>
                 <input onChange={(e)=>setFile(e.target.files[0])} type="file" name="file"/>
-                <input type="submit" value="Criar Conta!"/>
+                <input type="submit" value="Postar no Instagram!"/>
             </form>
         </div>
     </div>
