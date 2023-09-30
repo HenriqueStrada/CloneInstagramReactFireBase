@@ -10,6 +10,7 @@ body{
     display: flex;
     margin: 0 auto;
     max-width: 1100px;
+    padding: 0 2%;
 }
 .header{
     padding: 10px 0;
@@ -23,6 +24,9 @@ body{
 .header_loginForm{
     width: 50%;
     text-align: right;
+}
+.header_loginForm form{
+    display: inline-block;
 }
 .header_loginForm input[type=text],
 .header_loginForm input[type=password]{
@@ -38,6 +42,29 @@ body{
     border: 0;
     height: 20px;
     padding: 0 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 14px;
+}
+.btn_criarConta{
+    display: inline-block;
+}
+.btn_criarConta a{
+    font-size: 14px;
+    margin: 0 10px;
+}
+.header_logadoInfo{
+    text-align: right;
+    width: 50%;
+}
+.header_logadoInfo a{
+    margin: 0 10px;
+    background-color: #0095f6;
+    color: white;
+    border: 0;
+    height: 20px;
+    padding: 3px 10px;
+    text-decoration: none;
     cursor: pointer;
     border-radius: 10px;
     font-size: 14px;
