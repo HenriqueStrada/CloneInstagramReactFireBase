@@ -69,4 +69,48 @@ body{
     border-radius: 10px;
     font-size: 14px;
 }
-
+.modalCriarConta{
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.formCriarConta{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+}
+.formCriarConta input{
+    width: 100%;
+    height: 30px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border: 1px solid #ccc;
+}
+.formCriarConta input[type=submit]{
+    background-color: #0095f6;
+    cursor: pointer;
+    color: white;
+}
+.close-modal-criar{
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    cursor: pointer;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #0095f6;
+}

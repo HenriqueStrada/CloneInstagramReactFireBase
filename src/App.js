@@ -1,10 +1,10 @@
 import './App.css';
-import './firebase';
+import {db} from './firebase';
 import {useEffect, useState} from "react";
 import Header from "./Header";
 
 function App() {
-    const[user, setUser] = useState("Henrique");
+    const[user, setUser] = useState();
 
   useEffect(() => {
 
