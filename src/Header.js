@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import firebase from 'firebase/compat/app';
+//import da autenticação, espaço, e banco de dados
 import {auth, storage, db} from './firebase';
 import {upload} from "@testing-library/user-event/dist/upload";
 function Header(props){
