@@ -19,7 +19,7 @@ function App() {
           if (val) {
               setUser(val.displayName);
           } else {
-              // Se val for null, você pode definir o usuário como null ou realizar outra ação apropriada
+              // Se val for null, você pode definir o usuário como null ou realizar outra ação apropriada.
               setUser(null);
           }
       });
