@@ -1,3 +1,5 @@
+import {auth, db} from './firebase';
+import {useEffect, useState} from "react";
 function Post(props){
     function comentar(id, e){
         e.preventDefault();

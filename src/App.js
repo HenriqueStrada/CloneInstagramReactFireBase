@@ -1,5 +1,5 @@
 import './App.css';
-import {db} from './firebase';
+import {auth, db} from './firebase';
 import {useEffect, useState} from "react";
 import Header from "./Header";
 import Post from "./Post";
@@ -15,6 +15,15 @@ function App() {
             return{id:document.id,info:document.data()}
         }))
       })
+      auth.onAuthStateChanged(function(val) {
+          if (val) {
+              setUser(val.displayName);
+          } else {
+              // Se val for null, você pode definir o usuário como null ou realizar outra ação apropriada
+              setUser(null);
+          }
+      });
+
   }, []);
 
 
