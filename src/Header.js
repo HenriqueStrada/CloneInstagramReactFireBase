@@ -97,6 +97,7 @@ function Header(props){
                     setFile(null);
                     alert("Upload Realizado com sucesso!");
                     document.getElementById("form-upload").reset();
+                    fecharModalUpload();
                 })
         })
     }

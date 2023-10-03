@@ -1,16 +1,45 @@
-import {auth, db} from './firebase';
+import {db} from './firebase';
 import {useEffect, useState} from "react";
+
 function Post(props){
+        const [comentarios, setComentarios] = useState([]);
+    useEffect(() => {
+        db.collection("posts").doc(props.id).collection("comentarios").onSnapshot(function(snapshot){
+                setComentarios(snapshot.docs.map(function(document){
+                    return{id:document.id,info:document.data()}
+                }))
+        })
+    }, []);
     function comentar(id, e){
         e.preventDefault();
-        alert("Comentando no post: " + id);
+        let comentarioAtual = document.querySelector("#comentario-"+id).value;
+        db.collection("posts").doc(id).collection("comentarios").add({
+            nome: props.user,
+            comentario: comentarioAtual
+        })
+        alert("Comentado com sucesso!");
+        comentarioAtual = document.querySelector("#comentario-"+id).value = "";
     }
     return(
         <div className="postSingle">
             <img src={props.info.image}/>
-            <p><b>{props.info.userName}</b>:{props.info.titulo}</p>
+            <p className="primary-post"><b>{props.info.userName}</b>: {props.info.titulo}</p>
+
+            <div className="coments">
+
+                {
+                    comentarios.map(function(val) {
+                        return (
+                            <div className="coment-single">
+                                <p><b>{val.info.nome}</b>: {val.info.comentario}</p>
+                            </div>
+                        );
+                    })
+                }
+            </div>
+
             <form onSubmit={(e)=>comentar(props.id,e)}>
-                <textarea></textarea>
+                <textarea id={"comentario-"+props.id}></textarea>
                 <input type="submit" value="Comentar!"/>
             </form>
         </div>
