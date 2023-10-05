@@ -10,19 +10,18 @@ function App() {
 
   useEffect(() => {
 
+      auth.onAuthStateChanged(function(val) {
+          if (val != null) {
+              setUser(val.displayName);
+          }
+      });
+
       db.collection("posts").orderBy("timestamp", "desc").onSnapshot(function(snapshot){
         setPosts(snapshot.docs.map(function(document){
             return{id:document.id,info:document.data()}
         }))
       })
-      auth.onAuthStateChanged(function(val) {
-          if (val) {
-              setUser(val.displayName);
-          } else {
-              // Se val for null, você pode definir o usuário como null ou realizar outra ação apropriada.
-              setUser(null);
-          }
-      });
+
 
   }, []);
 
