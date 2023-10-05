@@ -3,7 +3,7 @@ import {auth, db} from './firebase';
 import {useEffect, useState} from "react";
 import Header from "./Header";
 import Post from "./Post";
-
+//
 function App() {
     const[user, setUser] = useState();
     const [posts, setPosts] = useState([]);
