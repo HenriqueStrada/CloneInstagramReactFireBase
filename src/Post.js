@@ -1,7 +1,7 @@
 import {db} from './firebase';
 import {useEffect, useState} from "react";
 import firebase from 'firebase/compat/app';
-
+//
 function Post(props){
         const [comentarios, setComentarios] = useState([]);
     useEffect(() => {
