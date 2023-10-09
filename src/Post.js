@@ -1,7 +1,7 @@
 import {db} from './firebase';
 import {useEffect, useState} from "react";
 import firebase from 'firebase/compat/app';
-//
+//npm
 function Post(props){
         const [comentarios, setComentarios] = useState([]);
     useEffect(() => {
@@ -11,6 +11,7 @@ function Post(props){
                 }))
         })
     }, []);
+    //
     function comentar(id, e){
         e.preventDefault();
         let comentarioAtual = document.querySelector("#comentario-"+id).value;
